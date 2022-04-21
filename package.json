@@ -2,7 +2,7 @@
   "name": "payroll-periods-ical-generator",
   "version": "0.0.0",
   "private": true,
-  "description": "Generate payday dates iCal file for different payroll periods",
+  "description": "Generate a payday calendar (iCal file) for different payroll periods.",
   "author": "Andy Nguyen <13814584+AndyN9@users.noreply.github.com>",
   "scripts": {
     "dev": "vite",

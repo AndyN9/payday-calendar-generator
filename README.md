@@ -1,5 +1,5 @@
 # payroll-periods-ical-generator
-Know when you're getting paid! Generate a payday calendar for different payroll periods and with the iCal file format.
+Know when you're getting paid! Generate a payday calendar (iCal file) for different payroll periods.
 
 ## TODO
 - [ ] react-hook-form??
