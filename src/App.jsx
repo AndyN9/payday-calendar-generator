@@ -1,13 +1,8 @@
-import { useState } from 'react';
-
-import './App.css';
+import React from 'react';
+import { PaydayCalenderGenerator } from './PaydayCalenderGenerator';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Payroll Periods iCal Generator</h1>
-    </div>
-  );
+  return <PaydayCalenderGenerator />;
 }
 
 export default App;
