@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { generateCalendar } from './generateCalender';
 
 const validate = (state) => {
   const validPayrollPeriod = state.payrollPeriod.trim().length > 0;
@@ -38,6 +39,11 @@ export function PaydayCalenderGenerator() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(form);
+    if (!form.valid) {
+      return;
+    }
+
+    console.log(generateCalendar(form));
   };
 
   const { payrollPeriod, eventTitle } = form;
@@ -121,7 +127,6 @@ export function PaydayCalenderGenerator() {
           />
         </div>
       </form>
-      {JSON.stringify(form)}
     </div>
   );
 }
