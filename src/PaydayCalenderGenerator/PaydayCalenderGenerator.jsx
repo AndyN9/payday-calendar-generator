@@ -1,12 +1,54 @@
-import React from 'react';
+import React, { useReducer } from 'react';
+
+const validate = (state) => {
+  const validPayrollPeriod = state.payrollPeriod.trim().length > 0;
+  return {
+    ...state,
+    validPayrollPeriod,
+    valid: validPayrollPeriod,
+  };
+};
 
 export function PaydayCalenderGenerator() {
+  const [form, dispatch] = useReducer(
+    (state, action) => {
+      const { name, payload } = action;
+
+      switch (name) {
+        case 'setPayrollPeriod':
+          return validate({
+            ...state,
+            ...payload,
+          });
+        case 'setEventTitle':
+          return validate({
+            ...state,
+            ...payload,
+          });
+        default:
+          return validate(state);
+      }
+    },
+    validate({
+      payrollPeriod: '',
+      eventTitle: '',
+    })
+  );
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(form);
+  };
+
+  const { payrollPeriod, eventTitle } = form;
+
   return (
     <div className="grid place-content-center h-screen">
       <form
         id="payday-calender-generator"
         name="payday-calender-generator"
         autoComplete="off"
+        onSubmit={handleSubmit}
       >
         <h1 className="text-3xl font-bold">Payday Calender Generator</h1>
         <p>
@@ -30,6 +72,15 @@ export function PaydayCalenderGenerator() {
               name="payroll-period"
               aria-label="Payroll period"
               required
+              value={payrollPeriod}
+              onChange={(event) => {
+                dispatch({
+                  name: 'setPayrollPeriod',
+                  payload: {
+                    payrollPeriod: event.target.value,
+                  },
+                });
+              }}
             >
               <option value="">Please select a period</option>
               <option value="weekly">Weekly</option>
@@ -49,6 +100,15 @@ export function PaydayCalenderGenerator() {
               name="event-title"
               aria-label="Event title"
               placeholder="Payday!"
+              value={eventTitle}
+              onChange={(event) => {
+                dispatch({
+                  name: 'setEventTitle',
+                  payload: {
+                    eventTitle: event.target.value,
+                  },
+                });
+              }}
             />
           </p>
         </section>
@@ -61,6 +121,7 @@ export function PaydayCalenderGenerator() {
           />
         </div>
       </form>
+      {JSON.stringify(form)}
     </div>
   );
 }
