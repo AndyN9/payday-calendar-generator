@@ -1,5 +1,5 @@
 {
-  "name": "payroll-periods-ical-generator",
+  "name": "payday-calender-generator",
   "version": "0.0.0",
   "private": true,
   "description": "Generate a payday calendar (iCal file) for different payroll periods.",

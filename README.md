@@ -1,4 +1,4 @@
-# payroll-periods-ical-generator
+# payday-calender-generator
 Know when you're getting paid! Generate a payday calendar (iCal file) for different payroll periods.
 
 ## TODO
