@@ -25,7 +25,7 @@ export function PaydayCalenderGenerator() {
               </strong>
             </label>
             <select
-              className="mt-1 w-2/3 rounded"
+              className="mt-1 w-2/3 rounded focus:invalid:border-red-500 focus:invalid:ring-red-500"
               id="payroll-period"
               name="payroll-period"
               aria-label="Payroll period"
