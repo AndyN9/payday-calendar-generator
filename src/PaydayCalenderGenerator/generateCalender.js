@@ -13,4 +13,5 @@ export function generateCalendar(state) {
     url: 'http://sebbo.net/',
   });
   return calendar.toString();
+  // return calendar.toBlob();
 }

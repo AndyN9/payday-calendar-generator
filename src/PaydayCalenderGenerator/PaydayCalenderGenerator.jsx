@@ -36,6 +36,16 @@ export function PaydayCalenderGenerator() {
     })
   );
 
+  const download = (blob, filename) => {
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', filename);
+    document.body.appendChild(link);
+    link.click();
+    link.parentNode.removeChild(link);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(form);
@@ -44,6 +54,10 @@ export function PaydayCalenderGenerator() {
     }
 
     console.log(generateCalendar(form));
+    // download(
+    //   generateCalendar(form),
+    //   `${form.payrollPeriod}-payday-calendar.ics`
+    // );
   };
 
   const { payrollPeriod, eventTitle } = form;
