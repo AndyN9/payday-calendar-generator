@@ -10,6 +10,16 @@ const validate = (state) => {
   };
 };
 
+const download = (blob, filename) => {
+  const url = window.URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.setAttribute('download', filename);
+  document.body.appendChild(link);
+  link.click();
+  link.parentNode.removeChild(link);
+};
+
 export function PaydayCalenderGenerator() {
   const [form, dispatch] = useReducer(
     (state, action) => {
@@ -35,16 +45,6 @@ export function PaydayCalenderGenerator() {
       eventTitle: '',
     })
   );
-
-  const download = (blob, filename) => {
-    const url = window.URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', filename);
-    document.body.appendChild(link);
-    link.click();
-    link.parentNode.removeChild(link);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
