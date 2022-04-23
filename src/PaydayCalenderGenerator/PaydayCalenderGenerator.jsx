@@ -120,7 +120,7 @@ export function PaydayCalenderGenerator() {
         </section>
         <div className="text-center">
           <input
-            className="mt-5 p-4 border rounded border-inherit "
+            className="mt-5 p-4 border rounded text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none"
             type="submit"
             value="Generate calender"
             aria-label="Generate calender"
