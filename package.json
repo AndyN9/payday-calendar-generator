@@ -22,10 +22,10 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.5.0",
     "ical-generator": "^3.4.1",
-    "moment": "^2.29.3",
     "prop-types": "^15.8.1",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "rrule": "^2.6.9"
   },
   "devDependencies": {
     "@babel/core": "^7.17.9",

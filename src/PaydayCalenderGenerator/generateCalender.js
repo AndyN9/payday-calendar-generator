@@ -1,17 +1,45 @@
 import ical from 'ical-generator';
-import moment from 'moment';
+import { RRule } from 'rrule';
 
-// eslint-disable-next-line no-unused-vars
-export function generateCalendar(state) {
-  const calendar = ical({ name: 'my first iCal' });
-  calendar.createEvent({
-    start: moment(),
-    end: moment().add(1, 'hour'),
-    summary: 'Example Event',
-    description: 'It works ;)',
-    location: 'my room',
-    url: 'http://sebbo.net/',
+function getFirstRruleDate(rrule) {
+  // for performance reasons, callback limits the result to the first date
+  const dates = rrule.all((date, index) => index === 0);
+  return dates[0];
+}
+
+export function generateCalendar({ payrollPeriod, eventTitle }) {
+  // default event title
+  const summary = eventTitle || 'Payday!';
+  const calendar = ical({
+    name: `Paydays!`,
+    description: `Payday calendar for ${payrollPeriod} schedule`,
   });
+
+  const firstRrule = new RRule({
+    freq: RRule.MONTHLY,
+    byweekday: [RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR],
+    bysetpos: [-1],
+    bymonthday: [13, 14, 15],
+  });
+  const secondRrule = new RRule({
+    freq: RRule.MONTHLY,
+    byweekday: [RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR],
+    bysetpos: [-1],
+  });
+
+  calendar.createEvent({
+    start: getFirstRruleDate(firstRrule),
+    allDay: true,
+    summary,
+    repeating: firstRrule,
+  });
+  calendar.createEvent({
+    start: getFirstRruleDate(secondRrule),
+    allDay: true,
+    summary,
+    repeating: secondRrule,
+  });
+
   return calendar.toString();
   // return calendar.toBlob();
 }
