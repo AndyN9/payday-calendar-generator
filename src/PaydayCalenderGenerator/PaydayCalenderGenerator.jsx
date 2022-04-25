@@ -60,10 +60,7 @@ export function PaydayCalenderGenerator() {
 
     const calendar = generateCalendar(form);
     if (isBlob(calendar)) {
-      download(
-        generateCalendar(form),
-        `${form.payrollPeriod}-payday-calendar.ics`
-      );
+      download(calendar, `${form.payrollPeriod}-payday-calendar.ics`);
     } else {
       console.log(calendar);
     }
