@@ -1,16 +1,20 @@
 import React, { useReducer } from 'react';
 import { generateCalendar } from './generateCalender';
 
-const validate = (state) => {
+function validateFormState(state) {
   const validPayrollPeriod = state.payrollPeriod.trim().length > 0;
   return {
     ...state,
     validPayrollPeriod,
     valid: validPayrollPeriod,
   };
-};
+}
 
-const download = (blob, filename) => {
+function isBlob(obj) {
+  return obj instanceof Blob;
+}
+
+function download(blob, filename) {
   const url = window.URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
@@ -18,7 +22,7 @@ const download = (blob, filename) => {
   document.body.appendChild(link);
   link.click();
   link.parentNode.removeChild(link);
-};
+}
 
 export function PaydayCalenderGenerator() {
   const [form, dispatch] = useReducer(
@@ -27,20 +31,20 @@ export function PaydayCalenderGenerator() {
 
       switch (name) {
         case 'setPayrollPeriod':
-          return validate({
+          return validateFormState({
             ...state,
             ...payload,
           });
         case 'setEventTitle':
-          return validate({
+          return validateFormState({
             ...state,
             ...payload,
           });
         default:
-          return validate(state);
+          return validateFormState(state);
       }
     },
-    validate({
+    validateFormState({
       payrollPeriod: '',
       eventTitle: '',
     })
