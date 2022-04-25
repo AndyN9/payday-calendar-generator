@@ -54,14 +54,19 @@ export function PaydayCalenderGenerator() {
     event.preventDefault();
     console.log(form);
     if (!form.valid) {
+      console.warn('Invalid form:', form);
       return;
     }
 
-    console.log(generateCalendar(form));
-    // download(
-    //   generateCalendar(form),
-    //   `${form.payrollPeriod}-payday-calendar.ics`
-    // );
+    const calendar = generateCalendar(form);
+    if (isBlob(calendar)) {
+      download(
+        generateCalendar(form),
+        `${form.payrollPeriod}-payday-calendar.ics`
+      );
+    } else {
+      console.log(calendar);
+    }
   };
 
   const { payrollPeriod, eventTitle } = form;

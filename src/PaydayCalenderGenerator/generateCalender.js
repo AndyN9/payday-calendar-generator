@@ -8,10 +8,20 @@ const payrollPeriodEvents = {
   monthly: [],
 };
 
+function validatePayrollPeriod(payrollPeriod) {
+  return Object.keys(payrollPeriodEvents).includes(payrollPeriod);
+}
+
+function validateEventTitle(eventTitle) {
+  return typeof eventTitle === 'string' && eventTitle.length > 0;
+}
+
 function getDefaultEventSettings(eventTitle) {
+  const summary = validateEventTitle(eventTitle) ? eventTitle : 'Payday!';
+
   return {
     // default event title
-    summary: eventTitle || 'Payday!',
+    summary,
     allDay: true,
   };
 }
@@ -23,6 +33,12 @@ function getFirstRruleDate(rrule) {
 }
 
 export function generateCalendar({ payrollPeriod, eventTitle }) {
+  if (!validatePayrollPeriod(payrollPeriod)) {
+    return `Invalid payroll period: ${payrollPeriod} (valid values: ${Object.keys(
+      payrollPeriodEvents
+    )})`;
+  }
+
   const calendar = ical({
     name: `Paydays!`,
     description: `Payday calendar for ${payrollPeriod} schedule`,
