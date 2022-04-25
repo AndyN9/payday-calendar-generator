@@ -1,6 +1,21 @@
 import ical from 'ical-generator';
 import { RRule } from 'rrule';
 
+const payrollPeriodEvents = {
+  weekly: [],
+  'bi-weekly': [],
+  'semi-monthly': [],
+  monthly: [],
+};
+
+function getDefaultEventSettings(eventTitle) {
+  return {
+    // default event title
+    summary: eventTitle || 'Payday!',
+    allDay: true,
+  };
+}
+
 function getFirstRruleDate(rrule) {
   // for performance reasons, callback limits the result to the first date
   const dates = rrule.all((date, index) => index === 0);
@@ -8,8 +23,6 @@ function getFirstRruleDate(rrule) {
 }
 
 export function generateCalendar({ payrollPeriod, eventTitle }) {
-  // default event title
-  const summary = eventTitle || 'Payday!';
   const calendar = ical({
     name: `Paydays!`,
     description: `Payday calendar for ${payrollPeriod} schedule`,
@@ -28,15 +41,13 @@ export function generateCalendar({ payrollPeriod, eventTitle }) {
   });
 
   calendar.createEvent({
+    ...getDefaultEventSettings(eventTitle),
     start: getFirstRruleDate(firstRrule),
-    allDay: true,
-    summary,
     repeating: firstRrule,
   });
   calendar.createEvent({
+    ...getDefaultEventSettings(eventTitle),
     start: getFirstRruleDate(secondRrule),
-    allDay: true,
-    summary,
     repeating: secondRrule,
   });
 
