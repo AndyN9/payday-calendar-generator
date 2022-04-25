@@ -1,12 +1,12 @@
 import React, { useReducer } from 'react';
-import { generateCalendar } from './generateCalender';
+import { generateCalendar, validatePayrollPeriod } from './generateCalender';
 
-function validateFormState(state) {
-  const validPayrollPeriod = state.payrollPeriod.trim().length > 0;
+function getValidatedFormState(state) {
+  const isValidPayrollPeriod = validatePayrollPeriod(state.payrollPeriod);
   return {
     ...state,
-    validPayrollPeriod,
-    valid: validPayrollPeriod,
+    isValidPayrollPeriod,
+    isValid: isValidPayrollPeriod,
   };
 }
 
@@ -31,20 +31,20 @@ export function PaydayCalenderGenerator() {
 
       switch (name) {
         case 'setPayrollPeriod':
-          return validateFormState({
+          return getValidatedFormState({
             ...state,
             ...payload,
           });
         case 'setEventTitle':
-          return validateFormState({
+          return getValidatedFormState({
             ...state,
             ...payload,
           });
         default:
-          return validateFormState(state);
+          return getValidatedFormState(state);
       }
     },
-    validateFormState({
+    getValidatedFormState({
       payrollPeriod: '',
       eventTitle: '',
     })
@@ -53,7 +53,7 @@ export function PaydayCalenderGenerator() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(form);
-    if (!form.valid) {
+    if (!form.isValid) {
       console.warn('Invalid form:', form);
       return;
     }

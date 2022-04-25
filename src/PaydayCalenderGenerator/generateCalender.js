@@ -8,7 +8,7 @@ const payrollPeriodEvents = {
   monthly: [],
 };
 
-function validatePayrollPeriod(payrollPeriod) {
+export function validatePayrollPeriod(payrollPeriod) {
   return Object.keys(payrollPeriodEvents).includes(payrollPeriod);
 }
 
