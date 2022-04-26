@@ -1,15 +1,31 @@
 import ical from 'ical-generator';
 import { RRule } from 'rrule';
 
-const payrollPeriodEvents = {
+const payrollPeriodsEvents = {
   weekly: [],
   'bi-weekly': [],
-  'semi-monthly': [],
+  'semi-monthly': [
+    {
+      rruleSettings: {
+        freq: RRule.MONTHLY,
+        byweekday: [RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR],
+        bysetpos: [-1],
+        bymonthday: [13, 14, 15],
+      },
+    },
+    {
+      rruleSettings: {
+        freq: RRule.MONTHLY,
+        byweekday: [RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR],
+        bysetpos: [-1],
+      },
+    },
+  ],
   monthly: [],
 };
 
 export function validatePayrollPeriod(payrollPeriod) {
-  return Object.keys(payrollPeriodEvents).includes(payrollPeriod);
+  return Object.keys(payrollPeriodsEvents).includes(payrollPeriod);
 }
 
 function validateEventTitle(eventTitle) {
@@ -32,39 +48,33 @@ function getFirstRruleDate(rrule) {
   return dates[0];
 }
 
+function getPayrollPeriodEventSettings(payrollPeriodEvent) {
+  const { rruleSettings } = payrollPeriodEvent;
+  const rrule = new RRule(rruleSettings);
+
+  return {
+    start: getFirstRruleDate(rrule),
+    repeating: rrule,
+  };
+}
+
 export function generateCalendar({ payrollPeriod, eventTitle }) {
   if (!validatePayrollPeriod(payrollPeriod)) {
     return `Invalid payroll period: ${payrollPeriod} (valid values: ${Object.keys(
-      payrollPeriodEvents
+      payrollPeriodsEvents
     )})`;
   }
 
   const calendar = ical({
     name: `Paydays!`,
-    description: `Payday calendar for ${payrollPeriod} schedule`,
+    description: `Payday calendar for a ${payrollPeriod} period`,
   });
 
-  const firstRrule = new RRule({
-    freq: RRule.MONTHLY,
-    byweekday: [RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR],
-    bysetpos: [-1],
-    bymonthday: [13, 14, 15],
-  });
-  const secondRrule = new RRule({
-    freq: RRule.MONTHLY,
-    byweekday: [RRule.MO, RRule.TU, RRule.WE, RRule.TH, RRule.FR],
-    bysetpos: [-1],
-  });
-
-  calendar.createEvent({
-    ...getDefaultEventSettings(eventTitle),
-    start: getFirstRruleDate(firstRrule),
-    repeating: firstRrule,
-  });
-  calendar.createEvent({
-    ...getDefaultEventSettings(eventTitle),
-    start: getFirstRruleDate(secondRrule),
-    repeating: secondRrule,
+  payrollPeriodsEvents[payrollPeriod].forEach((payrollPeriodEvent) => {
+    calendar.createEvent({
+      ...getDefaultEventSettings(eventTitle),
+      ...getPayrollPeriodEventSettings(payrollPeriodEvent),
+    });
   });
 
   return calendar.toString();
