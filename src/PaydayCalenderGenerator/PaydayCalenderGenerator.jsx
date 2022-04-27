@@ -142,8 +142,8 @@ export function PaydayCalenderGenerator() {
           <input
             className="mt-5 p-4 border rounded text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none"
             type="submit"
-            value="Generate calender"
-            aria-label="Generate calender"
+            value="Download calender"
+            aria-label="Download calender"
           />
         </div>
       </form>
