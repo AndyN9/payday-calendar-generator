@@ -2,8 +2,24 @@ import ical from 'ical-generator';
 import { RRule } from 'rrule';
 
 const payrollPeriodsEvents = {
-  weekly: [],
-  'bi-weekly': [],
+  weekly: [
+    {
+      rruleSettings: {
+        freq: RRule.WEEKLY,
+        wkst: RRule.FR,
+        byweekday: RRule.FR,
+      },
+    },
+  ],
+  'bi-weekly': [
+    {
+      rruleSettings: {
+        freq: RRule.WEEKLY,
+        interval: 2,
+        byweekday: RRule.FR,
+      },
+    },
+  ],
   'semi-monthly': [
     {
       rruleSettings: {
@@ -21,7 +37,14 @@ const payrollPeriodsEvents = {
       },
     },
   ],
-  monthly: [],
+  monthly: [
+    {
+      rruleSettings: {
+        freq: RRule.MONTHLY,
+        byweekday: [RRule.FR.nth(2)],
+      },
+    },
+  ],
 };
 
 export function validatePayrollPeriod(payrollPeriod) {
