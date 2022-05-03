@@ -127,6 +127,7 @@ export function generateCalendar({ payrollPeriod, payday, eventTitle }) {
     });
   });
 
-  return calendar.toString();
-  // return calendar.toBlob();
+  // README: for debugging purposes
+  // return calendar.toString();
+  return calendar.toBlob();
 }
