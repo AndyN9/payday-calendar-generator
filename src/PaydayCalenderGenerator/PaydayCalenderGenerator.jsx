@@ -24,6 +24,9 @@ function download(blob, filename) {
   link.parentNode.removeChild(link);
 }
 
+const capitalize = (string) =>
+  (string && string[0].toUpperCase() + string.slice(1)) || '';
+
 export function PaydayCalenderGenerator() {
   const [form, dispatch] = useReducer(
     (state, action) => {
@@ -115,6 +118,26 @@ export function PaydayCalenderGenerator() {
               <option value="monthly">Monthly</option>
             </select>
           </p>
+          <fieldset className="block">
+            <legend>Pay Weekday</legend>
+            <div className="mt-2">
+              {['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].map(
+                (day, index) => (
+                  <div key={`${day}-${index}`}>
+                    <label htmlFor={day} className="inline-flex items-center">
+                      <input
+                        className="form-radio"
+                        type="radio"
+                        id={day}
+                        name={day}
+                      />
+                      <span className="ml-2">{capitalize(day)}</span>
+                    </label>
+                  </div>
+                )
+              )}
+            </div>
+          </fieldset>
           <p className="flex flex-col sm:flex-row place-content-between place-items-center">
             <label htmlFor="event-title">
               <span>Event Title: </span>
