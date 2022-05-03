@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "@tailwindcss/forms": "^0.5.1",
+    "cssnano": "^5.1.7",
     "ical-generator": "^3.4.2",
     "prop-types": "^15.8.1",
     "react": "^18.1.0",
