@@ -6,7 +6,6 @@ const payrollPeriodsEvents = {
     {
       rruleSettings: {
         freq: RRule.WEEKLY,
-        wkst: RRule.FR,
         byweekday: RRule.FR,
       },
     },
