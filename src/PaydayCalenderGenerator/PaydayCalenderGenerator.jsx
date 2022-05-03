@@ -104,7 +104,7 @@ export function PaydayCalenderGenerator() {
         </p>
         <section className="mt-5 space-y-2">
           <label className="block" htmlFor="payroll-period">
-            <span>Payroll Period: </span>
+            <span className="text-xl font-bold">Payroll Period: </span>
             <strong>
               <abbr title="required">*</abbr>
             </strong>
@@ -157,7 +157,7 @@ export function PaydayCalenderGenerator() {
             </select>
           </label>
           <fieldset className="block">
-            <legend>
+            <legend className="text-xl font-bold">
               Payday:{' '}
               <strong>
                 <abbr title="required">*</abbr>
@@ -197,7 +197,7 @@ export function PaydayCalenderGenerator() {
             </div>
           </fieldset>
           <label className="block" htmlFor="event-title">
-            <span>Event Title: </span>
+            <span className="text-xl font-bold">Event Title: </span>
             <input
               className="form-input w-full mt-1 rounded"
               type="text"
