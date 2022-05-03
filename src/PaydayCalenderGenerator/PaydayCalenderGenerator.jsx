@@ -163,17 +163,23 @@ export function PaydayCalenderGenerator() {
                 <abbr title="required">*</abbr>
               </strong>
             </legend>
+            {form.payrollPeriod === 'semi-monthly' && (
+              <p className="text-sm">
+                Semi-monthly doesn't require a payday option
+              </p>
+            )}
             <div className="mt-2">
               {Object.keys(validPaydays).map((day, index) => (
                 <div key={`${day}-${index}`}>
                   <label htmlFor={day} className="inline-flex items-center">
                     <input
-                      className="form-radio"
+                      className="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
                       type="radio"
                       id={day}
                       name={day}
                       aria-label={`${day} payday`}
                       value={day}
+                      disabled={form.payrollPeriod === 'semi-monthly'}
                       checked={day === payday}
                       onChange={(event) => {
                         dispatch({
