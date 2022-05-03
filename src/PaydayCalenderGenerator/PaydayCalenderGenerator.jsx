@@ -74,6 +74,7 @@ export function PaydayCalenderGenerator() {
   return (
     <div className="grid place-content-center h-screen">
       <form
+        className="m-5"
         id="payday-calender-generator"
         name="payday-calender-generator"
         autoComplete="off"
@@ -88,18 +89,16 @@ export function PaydayCalenderGenerator() {
           .
         </p>
         <section className="mt-5 space-y-2">
-          <p className="flex flex-col sm:flex-row place-content-between place-items-center">
-            <label htmlFor="payroll-period">
-              <span>Payroll Period: </span>
-              <strong>
-                <abbr title="required">*</abbr>
-              </strong>
-            </label>
+          <label className="block" htmlFor="payroll-period">
+            <span>Payroll Period: </span>
+            <strong>
+              <abbr title="required">*</abbr>
+            </strong>
             <select
-              className="mt-1 w-2/3 rounded focus:invalid:border-red-500 focus:invalid:ring-red-500"
+              className="form-select block w-full mt-1 rounded focus:invalid:border-red-500 focus:invalid:ring-red-500"
               id="payroll-period"
               name="payroll-period"
-              aria-label="Payroll period"
+              aria-label="payroll period"
               required
               value={payrollPeriod}
               onChange={(event) => {
@@ -111,15 +110,45 @@ export function PaydayCalenderGenerator() {
                 });
               }}
             >
-              <option value="">Please select a period</option>
-              <option value="weekly">Weekly</option>
-              <option value="bi-weekly">Bi-weekly</option>
-              <option value="semi-monthly">Semi-monthly</option>
-              <option value="monthly">Monthly</option>
+              {[
+                {
+                  value: '',
+                  label: 'Please select a period',
+                },
+                {
+                  value: 'weekly',
+                  label: 'Weekly',
+                },
+                {
+                  value: 'bi-weekly',
+                  label: 'Bi-weekly',
+                },
+                {
+                  value: 'semi-monthly',
+                  label: 'Semi-monthly',
+                },
+                {
+                  value: 'monthly',
+                  label: 'Monthly',
+                },
+              ].map((period, index) => {
+                const { value, label } = period;
+
+                return (
+                  <option key={`${value}-${index}`} value={value}>
+                    {label}
+                  </option>
+                );
+              })}
             </select>
-          </p>
+          </label>
           <fieldset className="block">
-            <legend>Pay Weekday</legend>
+            <legend>
+              Payday:{' '}
+              <strong>
+                <abbr title="required">*</abbr>
+              </strong>
+            </legend>
             <div className="mt-2">
               {['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].map(
                 (day, index) => (
@@ -130,6 +159,7 @@ export function PaydayCalenderGenerator() {
                         type="radio"
                         id={day}
                         name={day}
+                        aria-label={`${day} payday`}
                       />
                       <span className="ml-2">{capitalize(day)}</span>
                     </label>
@@ -138,16 +168,14 @@ export function PaydayCalenderGenerator() {
               )}
             </div>
           </fieldset>
-          <p className="flex flex-col sm:flex-row place-content-between place-items-center">
-            <label htmlFor="event-title">
-              <span>Event Title: </span>
-            </label>
+          <label className="block" htmlFor="event-title">
+            <span>Event Title: </span>
             <input
-              className="mt-1 w-2/3 rounded"
+              className="form-input w-full mt-1 rounded"
               type="text"
               id="event-title"
               name="event-title"
-              aria-label="Event title"
+              aria-label="event title"
               placeholder="Payday!"
               value={eventTitle}
               onChange={(event) => {
@@ -159,11 +187,11 @@ export function PaydayCalenderGenerator() {
                 });
               }}
             />
-          </p>
+          </label>
         </section>
-        <div className="text-center">
+        <div className="mt-5 text-center">
           <input
-            className="mt-5 p-4 border rounded text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+            className="p-4 border rounded text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none"
             type="submit"
             value="Download calender"
             aria-label="Download calender"
