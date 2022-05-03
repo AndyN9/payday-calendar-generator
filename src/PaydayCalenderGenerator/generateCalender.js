@@ -6,7 +6,7 @@ const payrollPeriodsEvents = {
     {
       rruleSettings: {
         freq: RRule.WEEKLY,
-        byweekday: RRule.FR,
+        byweekday: RRule.FR, // default is 'friday'
       },
     },
   ],
@@ -15,7 +15,7 @@ const payrollPeriodsEvents = {
       rruleSettings: {
         freq: RRule.WEEKLY,
         interval: 2,
-        byweekday: RRule.FR,
+        byweekday: RRule.FR, // default is 'friday'
       },
     },
   ],
@@ -40,14 +40,28 @@ const payrollPeriodsEvents = {
     {
       rruleSettings: {
         freq: RRule.MONTHLY,
-        byweekday: [RRule.FR.nth(2)],
+        byweekday: [RRule.FR.nth(2)], // default is 'friday'
       },
     },
   ],
 };
 
+export const validPaydays = {
+  monday: RRule.MO,
+  tuesday: RRule.TU,
+  wednesday: RRule.WE,
+  thursday: RRule.TH,
+  friday: RRule.FR,
+};
+
+export const DEFAULT_PAYDAY = 'friday';
+
 export function validatePayrollPeriod(payrollPeriod) {
   return Object.keys(payrollPeriodsEvents).includes(payrollPeriod);
+}
+
+export function validatePayday(payday) {
+  return Object.keys(validPaydays).includes(payday);
 }
 
 function validateEventTitle(eventTitle) {
@@ -70,8 +84,19 @@ function getFirstRruleDate(rrule) {
   return dates[0];
 }
 
-function getPayrollPeriodEventSettings(payrollPeriodEvent) {
+function getPayrollPeriodEventSettings(
+  payrollPeriodEvent,
+  { payrollPeriod, payday }
+) {
   const { rruleSettings } = payrollPeriodEvent;
+
+  if (payrollPeriod !== 'semi-monthly') {
+    const selectedPayday = validPaydays[payday];
+
+    rruleSettings.byweekday =
+      payrollPeriod !== 'monthly' ? selectedPayday : [selectedPayday.nth(2)];
+  }
+
   const rrule = new RRule(rruleSettings);
 
   return {
@@ -80,7 +105,7 @@ function getPayrollPeriodEventSettings(payrollPeriodEvent) {
   };
 }
 
-export function generateCalendar({ payrollPeriod, eventTitle }) {
+export function generateCalendar({ payrollPeriod, payday, eventTitle }) {
   if (!validatePayrollPeriod(payrollPeriod)) {
     return `Invalid payroll period: ${payrollPeriod} (valid values: ${Object.keys(
       payrollPeriodsEvents
@@ -95,7 +120,10 @@ export function generateCalendar({ payrollPeriod, eventTitle }) {
   payrollPeriodsEvents[payrollPeriod].forEach((payrollPeriodEvent) => {
     calendar.createEvent({
       ...getDefaultEventSettings(eventTitle),
-      ...getPayrollPeriodEventSettings(payrollPeriodEvent),
+      ...getPayrollPeriodEventSettings(payrollPeriodEvent, {
+        payrollPeriod,
+        payday,
+      }),
     });
   });
 

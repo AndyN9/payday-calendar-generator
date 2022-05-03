@@ -1,12 +1,20 @@
 import React, { useReducer } from 'react';
-import { generateCalendar, validatePayrollPeriod } from './generateCalender';
+import {
+  generateCalendar,
+  validatePayrollPeriod,
+  validatePayday,
+  validPaydays,
+  DEFAULT_PAYDAY,
+} from './generateCalender';
 
 function getValidatedFormState(state) {
   const isValidPayrollPeriod = validatePayrollPeriod(state.payrollPeriod);
+  const isValidPayday = validatePayday(state.payday);
   return {
     ...state,
     isValidPayrollPeriod,
-    isValid: isValidPayrollPeriod,
+    isValidPayday,
+    isValid: isValidPayrollPeriod && isValidPayday,
   };
 }
 
@@ -38,6 +46,11 @@ export function PaydayCalenderGenerator() {
             ...state,
             ...payload,
           });
+        case 'setPayday':
+          return getValidatedFormState({
+            ...state,
+            ...payload,
+          });
         case 'setEventTitle':
           return getValidatedFormState({
             ...state,
@@ -49,6 +62,7 @@ export function PaydayCalenderGenerator() {
     },
     getValidatedFormState({
       payrollPeriod: '',
+      payday: DEFAULT_PAYDAY,
       eventTitle: '',
     })
   );
@@ -69,7 +83,7 @@ export function PaydayCalenderGenerator() {
     }
   };
 
-  const { payrollPeriod, eventTitle } = form;
+  const { payrollPeriod, payday, eventTitle } = form;
 
   return (
     <div className="grid place-content-center h-screen">
@@ -150,22 +164,30 @@ export function PaydayCalenderGenerator() {
               </strong>
             </legend>
             <div className="mt-2">
-              {['monday', 'tuesday', 'wednesday', 'thursday', 'friday'].map(
-                (day, index) => (
-                  <div key={`${day}-${index}`}>
-                    <label htmlFor={day} className="inline-flex items-center">
-                      <input
-                        className="form-radio"
-                        type="radio"
-                        id={day}
-                        name={day}
-                        aria-label={`${day} payday`}
-                      />
-                      <span className="ml-2">{capitalize(day)}</span>
-                    </label>
-                  </div>
-                )
-              )}
+              {Object.keys(validPaydays).map((day, index) => (
+                <div key={`${day}-${index}`}>
+                  <label htmlFor={day} className="inline-flex items-center">
+                    <input
+                      className="form-radio"
+                      type="radio"
+                      id={day}
+                      name={day}
+                      aria-label={`${day} payday`}
+                      value={day}
+                      checked={day === payday}
+                      onChange={(event) => {
+                        dispatch({
+                          name: 'setPayday',
+                          payload: {
+                            payday: event.target.value,
+                          },
+                        });
+                      }}
+                    />
+                    <span className="ml-2">{capitalize(day)}</span>
+                  </label>
+                </div>
+              ))}
             </div>
           </fieldset>
           <label className="block" htmlFor="event-title">
