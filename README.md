@@ -1,7 +1,7 @@
-# payday-calender-generator
+# payday-calendar-generator
 Know when you're getting paid! Generate a payday calendar (iCal file) for different payroll periods.
 
-[Live Demo](https://andynguyen.dev/payday-calender-generator/)
+[Live Demo](https://andynguyen.dev/payday-calendar-generator/)
 
 ## Installation
 ```

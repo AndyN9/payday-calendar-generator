@@ -5,7 +5,7 @@ import {
   validatePayday,
   validPaydays,
   DEFAULT_PAYDAY,
-} from './generateCalender';
+} from './generateCalendar';
 
 function getValidatedFormState(state) {
   const isValidPayrollPeriod = validatePayrollPeriod(state.payrollPeriod);
@@ -35,7 +35,7 @@ function download(blob, filename) {
 const capitalize = (string) =>
   (string && string[0].toUpperCase() + string.slice(1)) || '';
 
-export function PaydayCalenderGenerator() {
+export function PaydayCalendarGenerator() {
   const [form, dispatch] = useReducer(
     (state, action) => {
       const { name, payload } = action;
@@ -89,12 +89,12 @@ export function PaydayCalenderGenerator() {
     <div className="grid place-content-center h-screen">
       <form
         className="m-5"
-        id="payday-calender-generator"
-        name="payday-calender-generator"
+        id="payday-calendar-generator"
+        name="payday-calendar-generator"
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <h1 className="text-3xl font-bold">Payday Calender Generator</h1>
+        <h1 className="text-3xl font-bold">Payday Calendar Generator</h1>
         <p>
           Required fields are followed by{' '}
           <strong>
@@ -221,8 +221,8 @@ export function PaydayCalenderGenerator() {
           <input
             className="p-4 border rounded text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none"
             type="submit"
-            value="Download calender"
-            aria-label="Download calender"
+            value="Download calendar"
+            aria-label="Download calendar"
           />
         </div>
       </form>

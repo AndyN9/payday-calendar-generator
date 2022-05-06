@@ -1,1 +1,0 @@
-export { PaydayCalenderGenerator } from './PaydayCalenderGenerator';

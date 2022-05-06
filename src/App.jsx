@@ -1,8 +1,8 @@
 import React from 'react';
-import { PaydayCalenderGenerator } from './PaydayCalenderGenerator';
+import { PaydayCalendarGenerator } from './PaydayCalendarGenerator';
 
 function App() {
-  return <PaydayCalenderGenerator />;
+  return <PaydayCalendarGenerator />;
 }
 
 export default App;
