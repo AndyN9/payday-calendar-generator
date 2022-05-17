@@ -69,7 +69,6 @@ export function PaydayCalendarGenerator() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(form);
     if (!form.isValid) {
       console.warn('Invalid form:', form);
       return;
@@ -79,6 +78,7 @@ export function PaydayCalendarGenerator() {
     if (isBlob(calendar)) {
       download(calendar, `${form.payrollPeriod}-payday-calendar.ics`);
     } else {
+      console.log(form);
       console.log(calendar);
     }
   };
