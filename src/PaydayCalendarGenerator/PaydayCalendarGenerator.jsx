@@ -91,6 +91,7 @@ export function PaydayCalendarGenerator() {
         className="m-5"
         id="payday-calendar-generator"
         name="payday-calendar-generator"
+        aria-label="payday calendar generator"
         autoComplete="off"
         onSubmit={handleSubmit}
       >
@@ -158,10 +159,12 @@ export function PaydayCalendarGenerator() {
           </label>
           <fieldset className="block">
             <legend className="text-xl font-bold">
-              Payday:{' '}
-              <strong>
-                <abbr title="required">*</abbr>
-              </strong>
+              Payday:
+              {form.payrollPeriod !== 'semi-monthly' && (
+                <strong>
+                  <abbr title="required"> *</abbr>
+                </strong>
+              )}
             </legend>
             {form.payrollPeriod === 'semi-monthly' && (
               <p className="text-sm">
