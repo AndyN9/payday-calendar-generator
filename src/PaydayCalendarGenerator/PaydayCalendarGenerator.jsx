@@ -158,11 +158,11 @@ export function PaydayCalendarGenerator() {
             </select>
           </label>
           <fieldset className="block">
-            <legend className="text-xl font-bold">
-              Payday:
+            <legend>
+              <span className="text-xl font-bold">Payday: </span>
               {form.payrollPeriod !== 'semi-monthly' && (
                 <strong>
-                  <abbr title="required"> *</abbr>
+                  <abbr title="required">*</abbr>
                 </strong>
               )}
             </legend>
