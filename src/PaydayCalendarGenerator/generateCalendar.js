@@ -105,7 +105,12 @@ function getPayrollPeriodEventSettings(
   };
 }
 
-export function generateCalendar({ payrollPeriod, payday, eventTitle }) {
+export function generateCalendar(
+  { payrollPeriod, payday, eventTitle },
+  options = { debug: false }
+) {
+  const { debug } = options;
+
   if (!validatePayrollPeriod(payrollPeriod)) {
     return `Invalid payroll period: ${payrollPeriod} (valid values: ${Object.keys(
       payrollPeriodsEvents
@@ -127,7 +132,5 @@ export function generateCalendar({ payrollPeriod, payday, eventTitle }) {
     });
   });
 
-  // README: for debugging purposes
-  // return calendar.toString();
-  return calendar.toBlob();
+  return debug ? calendar.toString() : calendar.toBlob();
 }
