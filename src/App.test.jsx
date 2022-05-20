@@ -9,12 +9,15 @@ afterEach(() => {
 });
 
 describe('App', () => {
-  it('should have a title', () => {
+  it('should have a title and subtitle', () => {
     render(<App />);
     const title = screen.getByRole('heading', {
       name: 'Payday Calendar Generator',
       level: 1,
     });
     expect(title).toBeInTheDocument();
+
+    const subtitle = screen.getByText(/Required fields are followed by/);
+    expect(subtitle).toBeInTheDocument();
   });
 });
