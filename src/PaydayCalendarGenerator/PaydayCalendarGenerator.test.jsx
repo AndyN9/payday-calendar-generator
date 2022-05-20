@@ -27,25 +27,15 @@ describe('PaydayCalendarGenerator', () => {
     expect(payrollPeriodSelect).toBeInTheDocument();
     expect(payrollPeriodSelect).toBeRequired();
 
-    const noValueSelectOption = screen.getByRole('option', {
-      name: 'Please select a period',
-    });
-    expect(noValueSelectOption).toBeInTheDocument();
-
-    const selectOptions = [
-      { name: 'Weekly', value: 'weekly' },
-      { name: 'Bi-weekly', value: 'bi-weekly' },
-      { name: 'Semi-monthly', value: 'semi-monthly' },
-      { name: 'Monthly', value: 'monthly' },
+    const selectOptionLabels = [
+      'Please select a period',
+      'Weekly',
+      'Bi-weekly',
+      'Semi-monthly',
+      'Monthly',
     ];
-    selectOptions.forEach((option) => {
-      const { name, value } = option;
-      fireEvent.change(payrollPeriodSelect, {
-        target: {
-          value,
-        },
-      });
-      const selectOption = screen.getByRole('option', { name });
+    selectOptionLabels.forEach((label) => {
+      const selectOption = screen.getByRole('option', { name: label });
       expect(selectOption).toBeInTheDocument();
     });
   });
