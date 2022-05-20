@@ -103,7 +103,7 @@ test.describe('form', () => {
 
   test("should render 'Download calendar' button", async ({ page }) => {
     const downloadCalendar = await page.locator(
-      '[aria-label="Download calendar"]'
+      '[aria-label="download calendar"]'
     );
     await expect(downloadCalendar).toBeVisible();
   });

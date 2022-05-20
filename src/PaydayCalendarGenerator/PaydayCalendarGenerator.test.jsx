@@ -111,7 +111,7 @@ describe('PaydayCalendarGenerator', () => {
     render(<PaydayCalendarGenerator />);
 
     const submit = screen.getByRole('button', {
-      name: 'Download calendar',
+      name: 'download calendar',
     });
     expect(submit).toBeVisible();
   });

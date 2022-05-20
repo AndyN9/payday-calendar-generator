@@ -225,7 +225,7 @@ export function PaydayCalendarGenerator() {
             className="p-4 border rounded text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none"
             type="submit"
             value="Download calendar"
-            aria-label="Download calendar"
+            aria-label="download calendar"
           />
         </div>
       </form>
