@@ -15,7 +15,7 @@ describe('PaydayCalendarGenerator', () => {
     const form = screen.getByRole('form', {
       name: 'payday calendar generator',
     });
-    expect(form).toBeInTheDocument();
+    expect(form).toBeVisible();
   });
 
   it("should render 'Payroll Period' select field", () => {
@@ -24,7 +24,7 @@ describe('PaydayCalendarGenerator', () => {
     const payrollPeriodSelect = screen.getByRole('combobox', {
       name: 'payroll period',
     });
-    expect(payrollPeriodSelect).toBeInTheDocument();
+    expect(payrollPeriodSelect).toBeVisible();
     expect(payrollPeriodSelect).toBeRequired();
 
     const selectOptionLabels = [
@@ -36,7 +36,7 @@ describe('PaydayCalendarGenerator', () => {
     ];
     selectOptionLabels.forEach((label) => {
       const selectOption = screen.getByRole('option', { name: label });
-      expect(selectOption).toBeInTheDocument();
+      expect(selectOption).toBeVisible();
     });
   });
 
@@ -54,10 +54,10 @@ describe('PaydayCalendarGenerator', () => {
     const semiMonthlyDisclaimer = screen.getByText(
       "Semi-monthly doesn't require a payday option"
     );
-    expect(semiMonthlyDisclaimer).toBeInTheDocument();
+    expect(semiMonthlyDisclaimer).toBeVisible();
 
     const payday = screen.getByRole('group', { name: 'Payday:' });
-    expect(payday).toBeInTheDocument();
+    expect(payday).toBeVisible();
 
     const radioOptionNames = [
       'monday payday',
@@ -68,7 +68,7 @@ describe('PaydayCalendarGenerator', () => {
     ];
     radioOptionNames.forEach((name) => {
       const radioOption = screen.getByRole('radio', { name });
-      expect(radioOption).toBeInTheDocument();
+      expect(radioOption).toBeVisible();
       expect(radioOption).toBeDisabled();
 
       if (name === 'friday payday') {
@@ -81,7 +81,7 @@ describe('PaydayCalendarGenerator', () => {
     render(<PaydayCalendarGenerator />);
 
     const payday = screen.getByRole('group', { name: 'Payday: required' });
-    expect(payday).toBeInTheDocument();
+    expect(payday).toBeVisible();
 
     const radioOptionNames = [
       'monday payday',
@@ -92,7 +92,7 @@ describe('PaydayCalendarGenerator', () => {
     ];
     radioOptionNames.forEach((name) => {
       const radioOption = screen.getByRole('radio', { name });
-      expect(radioOption).toBeInTheDocument();
+      expect(radioOption).toBeVisible();
 
       if (name === 'friday payday') {
         expect(radioOption).toBeChecked();
@@ -104,7 +104,7 @@ describe('PaydayCalendarGenerator', () => {
     render(<PaydayCalendarGenerator />);
 
     const eventTitle = screen.getByRole('textbox', { name: 'event title' });
-    expect(eventTitle).toBeInTheDocument();
+    expect(eventTitle).toBeVisible();
   });
 
   it("should render 'Download calendar' button", () => {
@@ -113,6 +113,6 @@ describe('PaydayCalendarGenerator', () => {
     const submit = screen.getByRole('button', {
       name: 'Download calendar',
     });
-    expect(submit).toBeInTheDocument();
+    expect(submit).toBeVisible();
   });
 });
