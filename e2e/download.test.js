@@ -8,8 +8,6 @@ test.afterEach(async ({ page }) => {
   await page.close();
 });
 
-test.describe('App', () => {
-  test('should have page title', async ({ page }) => {
-    await expect(page).toHaveTitle('Payroll Periods iCal Generator');
-  });
+test.describe('download', () => {
+  test('should generate calendar file', async ({ page }) => {});
 });
