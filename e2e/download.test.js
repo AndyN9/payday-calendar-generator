@@ -2,7 +2,7 @@ const { test, expect } = require('@playwright/test');
 const fs = require('fs/promises');
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('http://localhost:3000/');
+  await page.goto('http://localhost:5173/');
 });
 
 test.afterEach(async ({ page }) => {
