@@ -6,7 +6,7 @@
   "author": "Andy Nguyen <13814584+AndyN9@users.noreply.github.com>",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest run && npm run test:e2e",
     "test:unit": "vitest",
