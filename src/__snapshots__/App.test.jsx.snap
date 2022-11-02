@@ -1,0 +1,534 @@
+// Vitest Snapshot v1
+
+exports[`App > should have a title and subtitle 1`] = `
+{
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="grid place-content-center h-screen"
+      >
+        <form
+          aria-label="payday calendar generator"
+          autocomplete="off"
+          class="m-5"
+          id="payday-calendar-generator"
+          name="payday-calendar-generator"
+        >
+          <h1
+            class="text-3xl font-bold"
+          >
+            Payday Calendar Generator
+          </h1>
+          <p>
+            Required fields are followed by
+             
+            <strong>
+              <abbr
+                title="required"
+              >
+                *
+              </abbr>
+            </strong>
+            .
+          </p>
+          <section
+            class="mt-5 space-y-2"
+          >
+            <label
+              class="block"
+              for="payroll-period"
+            >
+              <span
+                class="text-xl font-bold"
+              >
+                Payroll Period: 
+              </span>
+              <strong>
+                <abbr
+                  title="required"
+                >
+                  *
+                </abbr>
+              </strong>
+              <select
+                aria-label="payroll period"
+                class="form-select block w-full mt-1 rounded focus:invalid:border-red-500 focus:invalid:ring-red-500"
+                id="payroll-period"
+                name="payroll-period"
+                required=""
+              >
+                <option
+                  value=""
+                >
+                  Please select a period
+                </option>
+                <option
+                  value="weekly"
+                >
+                  Weekly
+                </option>
+                <option
+                  value="bi-weekly"
+                >
+                  Bi-weekly
+                </option>
+                <option
+                  value="semi-monthly"
+                >
+                  Semi-monthly
+                </option>
+                <option
+                  value="monthly"
+                >
+                  Monthly
+                </option>
+              </select>
+            </label>
+            <fieldset
+              class="block"
+            >
+              <legend>
+                <span
+                  class="text-xl font-bold"
+                >
+                  Payday: 
+                </span>
+                <strong>
+                  <abbr
+                    title="required"
+                  >
+                    *
+                  </abbr>
+                </strong>
+              </legend>
+              <div
+                class="mt-2"
+              >
+                <div>
+                  <label
+                    class="inline-flex items-center"
+                    for="monday"
+                  >
+                    <input
+                      aria-label="monday payday"
+                      class="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
+                      id="monday"
+                      name="monday"
+                      type="radio"
+                      value="monday"
+                    />
+                    <span
+                      class="ml-2"
+                    >
+                      Monday
+                    </span>
+                  </label>
+                </div>
+                <div>
+                  <label
+                    class="inline-flex items-center"
+                    for="tuesday"
+                  >
+                    <input
+                      aria-label="tuesday payday"
+                      class="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
+                      id="tuesday"
+                      name="tuesday"
+                      type="radio"
+                      value="tuesday"
+                    />
+                    <span
+                      class="ml-2"
+                    >
+                      Tuesday
+                    </span>
+                  </label>
+                </div>
+                <div>
+                  <label
+                    class="inline-flex items-center"
+                    for="wednesday"
+                  >
+                    <input
+                      aria-label="wednesday payday"
+                      class="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
+                      id="wednesday"
+                      name="wednesday"
+                      type="radio"
+                      value="wednesday"
+                    />
+                    <span
+                      class="ml-2"
+                    >
+                      Wednesday
+                    </span>
+                  </label>
+                </div>
+                <div>
+                  <label
+                    class="inline-flex items-center"
+                    for="thursday"
+                  >
+                    <input
+                      aria-label="thursday payday"
+                      class="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
+                      id="thursday"
+                      name="thursday"
+                      type="radio"
+                      value="thursday"
+                    />
+                    <span
+                      class="ml-2"
+                    >
+                      Thursday
+                    </span>
+                  </label>
+                </div>
+                <div>
+                  <label
+                    class="inline-flex items-center"
+                    for="friday"
+                  >
+                    <input
+                      aria-label="friday payday"
+                      checked=""
+                      class="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
+                      id="friday"
+                      name="friday"
+                      type="radio"
+                      value="friday"
+                    />
+                    <span
+                      class="ml-2"
+                    >
+                      Friday
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </fieldset>
+            <label
+              class="block"
+              for="event-title"
+            >
+              <span
+                class="text-xl font-bold"
+              >
+                Event Title: 
+              </span>
+              <input
+                aria-label="event title"
+                class="form-input w-full mt-1 rounded"
+                id="event-title"
+                name="event-title"
+                placeholder="Payday!"
+                type="text"
+                value=""
+              />
+            </label>
+          </section>
+          <div
+            class="mt-5 text-center"
+          >
+            <input
+              aria-label="download calendar"
+              class="p-4 border rounded text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+              type="submit"
+              value="Download calendar"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="grid place-content-center h-screen"
+    >
+      <form
+        aria-label="payday calendar generator"
+        autocomplete="off"
+        class="m-5"
+        id="payday-calendar-generator"
+        name="payday-calendar-generator"
+      >
+        <h1
+          class="text-3xl font-bold"
+        >
+          Payday Calendar Generator
+        </h1>
+        <p>
+          Required fields are followed by
+           
+          <strong>
+            <abbr
+              title="required"
+            >
+              *
+            </abbr>
+          </strong>
+          .
+        </p>
+        <section
+          class="mt-5 space-y-2"
+        >
+          <label
+            class="block"
+            for="payroll-period"
+          >
+            <span
+              class="text-xl font-bold"
+            >
+              Payroll Period: 
+            </span>
+            <strong>
+              <abbr
+                title="required"
+              >
+                *
+              </abbr>
+            </strong>
+            <select
+              aria-label="payroll period"
+              class="form-select block w-full mt-1 rounded focus:invalid:border-red-500 focus:invalid:ring-red-500"
+              id="payroll-period"
+              name="payroll-period"
+              required=""
+            >
+              <option
+                value=""
+              >
+                Please select a period
+              </option>
+              <option
+                value="weekly"
+              >
+                Weekly
+              </option>
+              <option
+                value="bi-weekly"
+              >
+                Bi-weekly
+              </option>
+              <option
+                value="semi-monthly"
+              >
+                Semi-monthly
+              </option>
+              <option
+                value="monthly"
+              >
+                Monthly
+              </option>
+            </select>
+          </label>
+          <fieldset
+            class="block"
+          >
+            <legend>
+              <span
+                class="text-xl font-bold"
+              >
+                Payday: 
+              </span>
+              <strong>
+                <abbr
+                  title="required"
+                >
+                  *
+                </abbr>
+              </strong>
+            </legend>
+            <div
+              class="mt-2"
+            >
+              <div>
+                <label
+                  class="inline-flex items-center"
+                  for="monday"
+                >
+                  <input
+                    aria-label="monday payday"
+                    class="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
+                    id="monday"
+                    name="monday"
+                    type="radio"
+                    value="monday"
+                  />
+                  <span
+                    class="ml-2"
+                  >
+                    Monday
+                  </span>
+                </label>
+              </div>
+              <div>
+                <label
+                  class="inline-flex items-center"
+                  for="tuesday"
+                >
+                  <input
+                    aria-label="tuesday payday"
+                    class="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
+                    id="tuesday"
+                    name="tuesday"
+                    type="radio"
+                    value="tuesday"
+                  />
+                  <span
+                    class="ml-2"
+                  >
+                    Tuesday
+                  </span>
+                </label>
+              </div>
+              <div>
+                <label
+                  class="inline-flex items-center"
+                  for="wednesday"
+                >
+                  <input
+                    aria-label="wednesday payday"
+                    class="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
+                    id="wednesday"
+                    name="wednesday"
+                    type="radio"
+                    value="wednesday"
+                  />
+                  <span
+                    class="ml-2"
+                  >
+                    Wednesday
+                  </span>
+                </label>
+              </div>
+              <div>
+                <label
+                  class="inline-flex items-center"
+                  for="thursday"
+                >
+                  <input
+                    aria-label="thursday payday"
+                    class="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
+                    id="thursday"
+                    name="thursday"
+                    type="radio"
+                    value="thursday"
+                  />
+                  <span
+                    class="ml-2"
+                  >
+                    Thursday
+                  </span>
+                </label>
+              </div>
+              <div>
+                <label
+                  class="inline-flex items-center"
+                  for="friday"
+                >
+                  <input
+                    aria-label="friday payday"
+                    checked=""
+                    class="form-radio disabled:border-gray-400 disabled:ring-gray-400 disabled:text-gray-400"
+                    id="friday"
+                    name="friday"
+                    type="radio"
+                    value="friday"
+                  />
+                  <span
+                    class="ml-2"
+                  >
+                    Friday
+                  </span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+          <label
+            class="block"
+            for="event-title"
+          >
+            <span
+              class="text-xl font-bold"
+            >
+              Event Title: 
+            </span>
+            <input
+              aria-label="event title"
+              class="form-input w-full mt-1 rounded"
+              id="event-title"
+              name="event-title"
+              placeholder="Payday!"
+              type="text"
+              value=""
+            />
+          </label>
+        </section>
+        <div
+          class="mt-5 text-center"
+        >
+          <input
+            aria-label="download calendar"
+            class="p-4 border rounded text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none"
+            type="submit"
+            value="Download calendar"
+          />
+        </div>
+      </form>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

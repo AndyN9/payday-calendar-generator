@@ -11,5 +11,7 @@ test.afterEach(async ({ page }) => {
 test.describe('App', () => {
   test('should have page title', async ({ page }) => {
     await expect(page).toHaveTitle('Payroll Periods iCal Generator');
+
+    expect(await page.screenshot()).toMatchSnapshot();
   });
 });

@@ -10,7 +10,9 @@ afterEach(() => {
 
 describe('App', () => {
   it('should have a title and subtitle', () => {
-    render(<App />);
+    const app = render(<App />);
+    expect(app).toMatchSnapshot();
+
     const title = screen.getByRole('heading', {
       name: 'Payday Calendar Generator',
       level: 1,
