@@ -1,5 +1,4 @@
-// @ts-check
-// eslint-disable-next-line import/no-extraneous-dependencies
+import type { PlaywrightTestConfig } from '@playwright/test';
 const { devices } = require('@playwright/test');
 
 /**
@@ -12,7 +11,7 @@ const { devices } = require('@playwright/test');
  * @see https://playwright.dev/docs/test-configuration
  * @type {import('@playwright/test').PlaywrightTestConfig}
  */
-const config = {
+const config: PlaywrightTestConfig = {
   testDir: './e2e',
   /* Maximum time one test can run for. */
   timeout: 30 * 1000,
