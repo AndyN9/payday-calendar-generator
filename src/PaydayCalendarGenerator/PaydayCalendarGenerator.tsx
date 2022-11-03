@@ -1,5 +1,7 @@
 import { FormEvent, useReducer } from 'react';
 import {
+  PayrollPeriods,
+  Paydays,
   generateCalendar,
   validatePayrollPeriod,
   validatePayday,
@@ -8,9 +10,9 @@ import {
 } from './generateCalendar';
 
 type FormState = {
-  payrollPeriod?: string,
-  payday?: string,
-  eventTitle?: string,
+  payrollPeriod: PayrollPeriods;
+  payday: Paydays;
+  eventTitle: string;
 }
 
 export type ValidatedFormState = FormState & {
@@ -79,7 +81,7 @@ export function PaydayCalendarGenerator() {
       }
     },
     getValidatedFormState({
-      payrollPeriod: '',
+      payrollPeriod: '' as PayrollPeriods,
       payday: DEFAULT_PAYDAY,
       eventTitle: '',
     })
@@ -92,7 +94,7 @@ export function PaydayCalendarGenerator() {
       return;
     }
 
-    const calendar = generateCalendar(form as Required<ValidatedFormState>);
+    const calendar = generateCalendar(form as ValidatedFormState);
     if (isBlob(calendar)) {
       download(calendar as Blob, `${form.payrollPeriod}-payday-calendar.ics`);
     } else {
@@ -138,8 +140,8 @@ export function PaydayCalendarGenerator() {
                 dispatch({
                   name: 'setPayrollPeriod',
                   payload: {
-                    payrollPeriod: event.target.value,
-                  },
+                    payrollPeriod: event.target.value as PayrollPeriods,
+                  } as FormState,
                 });
               }}
             >
@@ -206,8 +208,8 @@ export function PaydayCalendarGenerator() {
                         dispatch({
                           name: 'setPayday',
                           payload: {
-                            payday: event.target.value,
-                          },
+                            payday: event.target.value as Paydays,
+                          } as FormState,
                         });
                       }}
                     />
@@ -232,7 +234,7 @@ export function PaydayCalendarGenerator() {
                   name: 'setEventTitle',
                   payload: {
                     eventTitle: event.target.value,
-                  },
+                  } as FormState,
                 });
               }}
             />

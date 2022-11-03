@@ -1,13 +1,13 @@
 import { describe, expect, it } from 'vitest';
 
-import { generateCalendar, DEFAULT_PAYDAY } from './generateCalendar';
+import { PayrollPeriods, Paydays, Calendar, generateCalendar, DEFAULT_PAYDAY } from './generateCalendar';
 
 describe('generateCalendar', () => {
   it('should return an error string when no payroll period is provided', () => {
     const result = generateCalendar({
-      payrollPeriod: '',
+      payrollPeriod: '' as PayrollPeriods,
       payday: DEFAULT_PAYDAY,
-    });
+    } as Calendar);
     expect(result).toEqual(
       'Invalid payroll period:  (valid values: weekly,bi-weekly,semi-monthly,monthly)'
     );
@@ -15,9 +15,9 @@ describe('generateCalendar', () => {
 
   it('should return an error string when an invalid payroll period is provided', () => {
     const result = generateCalendar({
-      payrollPeriod: 'invalid',
+      payrollPeriod: 'invalid' as PayrollPeriods,
       payday: DEFAULT_PAYDAY,
-    });
+    } as Calendar);
     expect(result).toEqual(
       'Invalid payroll period: invalid (valid values: weekly,bi-weekly,semi-monthly,monthly)'
     );
@@ -25,9 +25,9 @@ describe('generateCalendar', () => {
 
   it('should return a blob when a valid payroll period is provided', () => {
     const result = generateCalendar({
-      payrollPeriod: 'bi-weekly',
+      payrollPeriod: 'bi-weekly' as PayrollPeriods,
       payday: DEFAULT_PAYDAY,
-    });
+    } as Calendar);
     expect(result).toBeInstanceOf(Blob);
   });
 });
@@ -46,7 +46,7 @@ describe('generateCalendar with debug on', () => {
 
     for (const [key, value] of Object.entries(paydays)) {
       const result = generateCalendar(
-        { payrollPeriod: 'weekly', payday: key },
+        { payrollPeriod: 'weekly', payday: key as Paydays } as Calendar,
         { debug: true }
       );
       expect(result).toBeTypeOf('string');
@@ -81,7 +81,7 @@ describe('generateCalendar with debug on', () => {
 
     for (const [key, value] of Object.entries(paydays)) {
       const result = generateCalendar(
-        { payrollPeriod: 'bi-weekly', payday: key },
+        { payrollPeriod: 'bi-weekly', payday: key as Paydays } as Calendar,
         { debug: true }
       );
       expect(result).toBeTypeOf('string');
@@ -105,7 +105,7 @@ describe('generateCalendar with debug on', () => {
 
   it('should return a valid calendar string for a semi-monthly payroll period', () => {
     const result = generateCalendar(
-      { payrollPeriod: 'semi-monthly', payday: DEFAULT_PAYDAY },
+      { payrollPeriod: 'semi-monthly', payday: DEFAULT_PAYDAY } as Calendar,
       { debug: true }
     );
     expect(result).toBeTypeOf('string');
@@ -144,7 +144,7 @@ describe('generateCalendar with debug on', () => {
 
     for (const [key, value] of Object.entries(paydays)) {
       const result = generateCalendar(
-        { payrollPeriod: 'monthly', payday: key },
+        { payrollPeriod: 'monthly', payday: key as Paydays} as Calendar,
         { debug: true }
       );
       expect(result).toBeTypeOf('string');

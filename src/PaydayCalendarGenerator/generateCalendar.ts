@@ -54,21 +54,24 @@ export const validPaydays = {
   friday: RRule.FR,
 };
 
+export type PayrollPeriods = keyof typeof payrollPeriodsEvents;
+export type Paydays = keyof typeof validPaydays;
+
 export const DEFAULT_PAYDAY = 'friday';
 
-export function validatePayrollPeriod(payrollPeriod) {
+export function validatePayrollPeriod(payrollPeriod: string) {
   return Object.keys(payrollPeriodsEvents).includes(payrollPeriod);
 }
 
-export function validatePayday(payday) {
+export function validatePayday(payday: string) {
   return Object.keys(validPaydays).includes(payday);
 }
 
-function validateEventTitle(eventTitle) {
+function validateEventTitle(eventTitle: string) {
   return typeof eventTitle === 'string' && eventTitle.length > 0;
 }
 
-function getDefaultEventSettings(eventTitle) {
+function getDefaultEventSettings(eventTitle: string) {
   const summary = validateEventTitle(eventTitle) ? eventTitle : 'Payday!';
 
   return {
@@ -78,15 +81,19 @@ function getDefaultEventSettings(eventTitle) {
   };
 }
 
-function getFirstRruleDate(rrule) {
+function getFirstRruleDate(rrule: RRule) {
   // for performance reasons, callback limits the result to the first date
   const dates = rrule.all((date, index) => index === 0);
   return dates[0];
 }
 
 function getPayrollPeriodEventSettings(
-  payrollPeriodEvent,
+  payrollPeriodEvent: typeof payrollPeriodsEvents[PayrollPeriods][0],
   { payrollPeriod, payday }
+    : {
+      payrollPeriod: PayrollPeriods;
+      payday: Paydays;
+    }
 ) {
   const { rruleSettings } = payrollPeriodEvent;
 
@@ -105,8 +112,14 @@ function getPayrollPeriodEventSettings(
   };
 }
 
+export type Calendar = {
+  payrollPeriod: PayrollPeriods;
+  payday: Paydays;
+  eventTitle: string;
+}
+
 export function generateCalendar(
-  { payrollPeriod, payday, eventTitle },
+  { payrollPeriod, payday, eventTitle }: Calendar,
   options = { debug: false }
 ) {
   const { debug } = options;
