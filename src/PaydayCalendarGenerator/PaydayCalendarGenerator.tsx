@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import { FormEvent, useReducer } from 'react';
 import {
   generateCalendar,
   validatePayrollPeriod,
@@ -7,7 +7,19 @@ import {
   DEFAULT_PAYDAY,
 } from './generateCalendar';
 
-function getValidatedFormState(state) {
+type FormState = {
+  payrollPeriod?: string,
+  payday?: string,
+  eventTitle?: string,
+}
+
+export type ValidatedFormState = FormState & {
+  isValidPayrollPeriod: boolean;
+  isValidPayday: boolean;
+  isValid: boolean;
+}
+
+function getValidatedFormState(state: FormState): ValidatedFormState {
   const isValidPayrollPeriod = validatePayrollPeriod(state.payrollPeriod);
   const isValidPayday = validatePayday(state.payday);
   return {
@@ -18,26 +30,32 @@ function getValidatedFormState(state) {
   };
 }
 
-function isBlob(obj) {
+function isBlob(obj: object | string) {
   return obj instanceof Blob;
 }
 
-function download(blob, filename) {
+function download(blob: Blob, filename: string) {
   const url = window.URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
   link.setAttribute('download', filename);
   document.body.appendChild(link);
   link.click();
-  link.parentNode.removeChild(link);
+  link.parentNode?.removeChild(link);
 }
 
-const capitalize = (string) =>
+const capitalize = (string: string) =>
   (string && string[0].toUpperCase() + string.slice(1)) || '';
+
+
+type FormAction = {
+  name: 'setPayrollPeriod' | 'setPayday' | 'setEventTitle';
+  payload: FormState;
+}
 
 export function PaydayCalendarGenerator() {
   const [form, dispatch] = useReducer(
-    (state, action) => {
+    (state: ValidatedFormState, action: FormAction) => {
       const { name, payload } = action;
 
       switch (name) {
@@ -67,16 +85,16 @@ export function PaydayCalendarGenerator() {
     })
   );
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     if (!form.isValid) {
       console.warn('Invalid form:', form);
       return;
     }
 
-    const calendar = generateCalendar(form);
+    const calendar = generateCalendar(form as Required<ValidatedFormState>);
     if (isBlob(calendar)) {
-      download(calendar, `${form.payrollPeriod}-payday-calendar.ics`);
+      download(calendar as Blob, `${form.payrollPeriod}-payday-calendar.ics`);
     } else {
       console.log(form);
       console.log(calendar);
