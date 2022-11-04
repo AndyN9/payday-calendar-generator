@@ -1,5 +1,5 @@
-const { test, expect } = require('@playwright/test');
-const fs = require('fs/promises');
+import { test, expect } from '@playwright/test';
+import fs from 'fs/promises';
 
 test.beforeEach(async ({ page }) => {
   await page.goto('http://localhost:5173/');
@@ -36,7 +36,7 @@ test.describe('download', () => {
       expect(filename).toMatch(/weekly-payday-calendar\.ics$/);
 
       const path = await download.path();
-      const data = await fs.readFile(path, { encoding: 'utf8' });
+      const data = await fs.readFile(path!, { encoding: 'utf8' });
 
       // calendar title
       expect(data).toMatch('NAME:Paydays!');
@@ -79,7 +79,7 @@ test.describe('download', () => {
       expect(filename).toMatch(/bi-weekly-payday-calendar\.ics$/);
 
       const path = await download.path();
-      const data = await fs.readFile(path, { encoding: 'utf8' });
+      const data = await fs.readFile(path!, { encoding: 'utf8' });
 
       // calendar title
       expect(data).toMatch('NAME:Paydays!');
@@ -112,7 +112,7 @@ test.describe('download', () => {
     expect(filename).toMatch(/semi-monthly-payday-calendar\.ics$/);
 
     const path = await download.path();
-    const data = await fs.readFile(path, { encoding: 'utf8' });
+    const data = await fs.readFile(path!, { encoding: 'utf8' });
 
     // calendar title
     expect(data).toMatch('NAME:Paydays!');
@@ -159,7 +159,7 @@ test.describe('download', () => {
       expect(filename).toMatch(/monthly-payday-calendar\.ics$/);
 
       const path = await download.path();
-      const data = await fs.readFile(path, { encoding: 'utf8' });
+      const data = await fs.readFile(path!, { encoding: 'utf8' });
 
       // calendar title
       expect(data).toMatch('NAME:Paydays!');
