@@ -1,4 +1,3 @@
-import React from 'react';
 import { PaydayCalendarGenerator } from './PaydayCalendarGenerator';
 
 function App() {
